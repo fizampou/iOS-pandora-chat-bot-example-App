@@ -1,4 +1,5 @@
 #import "Message.h"
+#import "Buddy.h"
 
 
 @implementation Message

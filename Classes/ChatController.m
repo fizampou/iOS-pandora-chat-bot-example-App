@@ -6,14 +6,14 @@
 
 
 @interface ChatController ()
-@property(nonatomic,retain) NSMutableData *receivedData;
-@property(nonatomic,retain) NSMutableData *startData;
-@property(nonatomic,retain) NSMutableData *start2Data;
-@property(nonatomic,retain) NSURLConnection *receivedConnection;
-@property(nonatomic,retain) NSURLConnection *startConnection;
-@property(nonatomic,retain) NSURLConnection *start2Connection;
-@property(nonatomic,retain) NSString *botId;
-@property(nonatomic,retain) NSString *botcust2;
+@property(nonatomic,strong) NSMutableData *receivedData;
+@property(nonatomic,strong) NSMutableData *startData;
+@property(nonatomic,strong) NSMutableData *start2Data;
+@property(nonatomic,strong) NSURLConnection *receivedConnection;
+@property(nonatomic,strong) NSURLConnection *startConnection;
+@property(nonatomic,strong) NSURLConnection *start2Connection;
+@property(nonatomic,strong) NSString *botId;
+@property(nonatomic,strong) NSString *botcust2;
 - (void)requestBotResponse;
 - (void)cancelBotResponseRequest;
 - (void)addMessage:(NSString*)text fromMe:(BOOL)fromMe;
@@ -29,9 +29,6 @@
 
 - (void)dealloc {
 	[self cancelBotResponseRequest];
-	self.buddy = nil;
-	self.repository = nil;
-    [super dealloc];
 }
 
 
@@ -43,7 +40,7 @@
     
 	[super loadView];
 	NSAssert(self.repository != nil,@"Not initialized");
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add:)] autorelease];
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add:)];
 	self.title = self.buddy.name;
     
     self.responses = [[NSArray alloc]initWithArray:strings];
@@ -123,7 +120,7 @@
 	static int minSize = 32;
 	static TextViewCell *dummy = nil;
 	if(dummy == nil)
-		dummy = [[TextViewCell cellForTableView:nil] retain];
+		dummy = [TextViewCell cellForTableView:nil];
 	dummy.textView.text = [[self.buddy.messages objectAtIndex:indexPath.section] text];
     CGSize size = [dummy.textView sizeThatFits:CGSizeMake(320.0, INFINITY)];
     size.height += 12.0;
@@ -214,7 +211,7 @@
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     
     startConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-    startData = [[NSMutableData data] retain];
+    startData = [NSMutableData data];
     
 }
 
@@ -224,7 +221,7 @@
     NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     
     start2Connection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-    start2Data = [[NSMutableData data] retain];
+    start2Data = [NSMutableData data];
 }
 
 - (void)requestBotResponse {
@@ -240,7 +237,7 @@
         [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
 
         receivedConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-        receivedData = [[NSMutableData data] retain];
+        receivedData = [NSMutableData data];
     } else {
         [self performSelector:@selector(responseReceived:) withObject:self.responses[rand() % sizeof(self.responses)] afterDelay:rand() % 15 + 2];
     }
@@ -266,7 +263,7 @@
 - (void)add:(id)sender {
 	SendController *ctrl = [SendController xnew];
 	ctrl.delegate = self;
-	[self presentModalViewController:[[[UINavigationController alloc] initWithRootViewController:ctrl] autorelease] animated:YES];
+	[self presentModalViewController:[[UINavigationController alloc] initWithRootViewController:ctrl] animated:YES];
 }
 
 @end

@@ -5,6 +5,6 @@
 	NSArray *buddies;
 	Repository *repository;
 }
-@property(nonatomic, retain) Repository *repository;
+@property(nonatomic, strong) Repository *repository;
 
 @end
