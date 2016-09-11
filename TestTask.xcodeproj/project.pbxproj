@@ -29,6 +29,7 @@
 		51D39A841246F92A007B7D88 /* SendController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D39A831246F92A007B7D88 /* SendController.m */; };
 		77666E47199259D100FF7950 /* Default-h568.png in Resources */ = {isa = PBXBuildFile; fileRef = 77666E46199259D100FF7950 /* Default-h568.png */; };
 		B759A2BB1D8469AC003C5099 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B759A2BA1D8469AC003C5099 /* Default-568h@2x.png */; };
+		B759A2C21D84B903003C5099 /* MockResponses.m in Sources */ = {isa = PBXBuildFile; fileRef = B759A2C11D84B903003C5099 /* MockResponses.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,8 @@
 		77666E46199259D100FF7950 /* Default-h568.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-h568.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Chat-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Chat-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		B759A2BA1D8469AC003C5099 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		B759A2C01D84B903003C5099 /* MockResponses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockResponses.h; sourceTree = "<group>"; };
+		B759A2C11D84B903003C5099 /* MockResponses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockResponses.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,18 +90,16 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B759A2BF1D84B8D6003C5099 /* MockResponses */,
+				B759A2BE1D84B193003C5099 /* Models */,
 				28C286DF0D94DF7D0034E888 /* BuddiesController.h */,
 				28C286E00D94DF7D0034E888 /* BuddiesController.m */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 				519ACD1B1242CD4A00768044 /* Repository.h */,
 				519ACD1C1242CD4A00768044 /* Repository.m */,
-				5192B16C1244EB9D009AA323 /* Buddy.h */,
-				5192B16D1244EB9D009AA323 /* Buddy.m */,
 				5192B2001244F13F009AA323 /* ChatController.h */,
 				5192B2011244F13F009AA323 /* ChatController.m */,
-				5192B2A31244F8FF009AA323 /* Message.h */,
-				5192B2A41244F8FF009AA323 /* Message.m */,
 				5192B4BE12455C96009AA323 /* TextViewCell.h */,
 				5192B4BF12455C96009AA323 /* TextViewCell.m */,
 				51D39A821246F92A007B7D88 /* SendController.h */,
@@ -125,7 +126,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				519ACD931242D40D00768044 /* CoreData.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -156,6 +156,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				519ACD931242D40D00768044 /* CoreData.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
@@ -172,6 +173,26 @@
 				516BB16C14ED259700C042DA /* NSString+SKAdditions.m */,
 			);
 			name = Generic;
+			sourceTree = "<group>";
+		};
+		B759A2BE1D84B193003C5099 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5192B16C1244EB9D009AA323 /* Buddy.h */,
+				5192B16D1244EB9D009AA323 /* Buddy.m */,
+				5192B2A31244F8FF009AA323 /* Message.h */,
+				5192B2A41244F8FF009AA323 /* Message.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		B759A2BF1D84B8D6003C5099 /* MockResponses */ = {
+			isa = PBXGroup;
+			children = (
+				B759A2C01D84B903003C5099 /* MockResponses.h */,
+				B759A2C11D84B903003C5099 /* MockResponses.m */,
+			);
+			name = MockResponses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,6 +273,7 @@
 				5192B2021244F13F009AA323 /* ChatController.m in Sources */,
 				5192B2A51244F8FF009AA323 /* Message.m in Sources */,
 				5192B4C012455C96009AA323 /* TextViewCell.m in Sources */,
+				B759A2C21D84B903003C5099 /* MockResponses.m in Sources */,
 				51D39A841246F92A007B7D88 /* SendController.m in Sources */,
 				51AA41111247987E00EB966D /* GPNSObjectAdditions.m in Sources */,
 				516BB16D14ED259700C042DA /* NSString+SKAdditions.m in Sources */,
