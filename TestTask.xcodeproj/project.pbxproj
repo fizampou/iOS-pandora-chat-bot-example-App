@@ -30,6 +30,7 @@
 		77666E47199259D100FF7950 /* Default-h568.png in Resources */ = {isa = PBXBuildFile; fileRef = 77666E46199259D100FF7950 /* Default-h568.png */; };
 		B759A2BB1D8469AC003C5099 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B759A2BA1D8469AC003C5099 /* Default-568h@2x.png */; };
 		B759A2C21D84B903003C5099 /* MockResponses.m in Sources */ = {isa = PBXBuildFile; fileRef = B759A2C11D84B903003C5099 /* MockResponses.m */; };
+		B759A2C71D853D13003C5099 /* BotService.m in Sources */ = {isa = PBXBuildFile; fileRef = B759A2C61D853D13003C5099 /* BotService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,8 @@
 		B759A2BA1D8469AC003C5099 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		B759A2C01D84B903003C5099 /* MockResponses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockResponses.h; sourceTree = "<group>"; };
 		B759A2C11D84B903003C5099 /* MockResponses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockResponses.m; sourceTree = "<group>"; };
+		B759A2C51D853D13003C5099 /* BotService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BotService.h; sourceTree = "<group>"; };
+		B759A2C61D853D13003C5099 /* BotService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BotService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B759A2C41D853B5C003C5099 /* Services */,
 				B759A2BF1D84B8D6003C5099 /* MockResponses */,
 				B759A2BE1D84B193003C5099 /* Models */,
 				28C286DF0D94DF7D0034E888 /* BuddiesController.h */,
@@ -195,6 +199,15 @@
 			name = MockResponses;
 			sourceTree = "<group>";
 		};
+		B759A2C41D853B5C003C5099 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B759A2C51D853D13003C5099 /* BotService.h */,
+				B759A2C61D853D13003C5099 /* BotService.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -275,6 +288,7 @@
 				5192B4C012455C96009AA323 /* TextViewCell.m in Sources */,
 				B759A2C21D84B903003C5099 /* MockResponses.m in Sources */,
 				51D39A841246F92A007B7D88 /* SendController.m in Sources */,
+				B759A2C71D853D13003C5099 /* BotService.m in Sources */,
 				51AA41111247987E00EB966D /* GPNSObjectAdditions.m in Sources */,
 				516BB16D14ED259700C042DA /* NSString+SKAdditions.m in Sources */,
 			);

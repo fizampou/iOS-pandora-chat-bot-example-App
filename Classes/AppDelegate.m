@@ -22,7 +22,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { 
 
 	BuddiesController *buddies = [BuddiesController xnew];
-    
     Repository *repository = [Repository sharedRepository];
 
     repository.delegate = self;

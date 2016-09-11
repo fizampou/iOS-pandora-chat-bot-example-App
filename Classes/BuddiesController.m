@@ -9,7 +9,7 @@
 @end
 
 @implementation BuddiesController
-@synthesize buddies, repository;
+@synthesize buddies, repository, botService;
 
 
 #pragma mark -
@@ -17,7 +17,6 @@
 
 - (void)loadView {
 	[super loadView];
-	NSAssert(self.repository != nil,@"Not initialized");
 	self.title = @"Buddies";
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:nil];
 }
@@ -28,6 +27,10 @@
 	[self.tableView reloadData];
 }
 
+-(void)viewDidLoad {
+    [super viewDidLoad];
+    self.botService = [[BotService alloc] init];
+}
 
 #pragma mark -
 #pragma mark UITableViewDataSource
@@ -67,7 +70,10 @@
     
     chatController.repository = self.repository;
 	chatController.buddy = selectedbuddy;
+    chatController.botService = self.botService;
     
+    [self.botService initWithBuddy:selectedbuddy];
+    [self.botService requestBotResponse];
 	[self.navigationController pushViewController:chatController animated:YES];
 }
 
