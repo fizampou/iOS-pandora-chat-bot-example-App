@@ -13,17 +13,13 @@
 
 @interface BotService ()
 @property(nonatomic,strong) NSMutableData *receivedData;
-@property(nonatomic,strong) NSMutableData *startData;
-@property(nonatomic,strong) NSMutableData *start2Data;
 @property(nonatomic,strong) NSURLConnection *receivedConnection;
-@property(nonatomic,strong) NSURLConnection *startConnection;
-@property(nonatomic,strong) NSURLConnection *start2Connection;
 @property(nonatomic,strong) NSString *botId;
 @property(nonatomic,strong) NSString *botcust2;
 @end
 
 @implementation BotService
-@synthesize receivedData, startData, start2Data, receivedConnection, startConnection, start2Connection, botId, botcust2, buddy, messageReceived;
+@synthesize receivedData, receivedConnection, botId, botcust2, buddy, messageReceived;
 
 - (void)initWithBuddy:(Buddy *) theBuddy {
     self.buddy = theBuddy;
@@ -36,21 +32,11 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if(connection == receivedConnection)
         [receivedData setLength:0];
-    else if(connection == startConnection)
-        [startData setLength:0];
-    else
-        [start2Data setLength:0];
-    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    if(connection == receivedConnection) {
+    if(connection == receivedConnection)
         [receivedData appendData:data];
-    } else if(connection == startConnection) {
-        [startData appendData:data];
-    } else {
-        [start2Data appendData:data];
-    }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -70,45 +56,42 @@
         NSLog(@"Reply: %@",reply);
         [NSThread sleepForTimeInterval:5]; // don't answer immediately
         [self responseReceived:reply];
-    } else if(connection == startConnection) {
-        NSLog(@"Succeeded! Received %lu bytes of data",(unsigned long)[startData length]);
-        NSString *content = [[NSString alloc] initWithBytes:[startData bytes] length:[startData length] encoding:NSUTF8StringEncoding];
-        NSError *error = nil;
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"botid=(\\w+)" options:0 error:&error];
-        NSAssert1(error == nil, @"Regexp error %@", error);
-        NSArray *matches = [regex matchesInString:content options:0 range:NSMakeRange(0, [content length])];
-        self.botId = [content substringWithRange:[[matches objectAtIndex:0] rangeAtIndex:1]];
-        NSLog(@"Botid is now %@",self.botId);
-        [self startStep2Bot];
-    } else {
-        NSLog(@"Succeeded! Received %lu bytes of data",(unsigned long)[start2Data length]);
-        NSString *content = [[NSString alloc] initWithBytes:[start2Data bytes] length:[start2Data length] encoding:NSUTF8StringEncoding];
-        NSError *error = nil;
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"name=\"botcust2\" value=\"(\\w+)" options:0 error:&error];
-        NSAssert1(error == nil, @"Regexp error %@", error);
-        NSArray *matches = [regex matchesInString:content options:0 range:NSMakeRange(0, [content length])];
-        self.botcust2 = [content substringWithRange:[[matches objectAtIndex:0] rangeAtIndex:1]];
-        NSLog(@"botcust2 is now %@",self.botcust2);
     }
 }
 
 - (void)startTheBot {
-    NSString *url = @"https://alice.pandorabots.com";
-    NSLog(@"Getting url %@",url);
-    NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    
-    startConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-    startData = [NSMutableData data];
-    
+    [self setupBot:NO];
 }
 
-- (void)startStep2Bot {
-    NSString *url = [NSString stringWithFormat:@"https://sheepridge.pandorabots.com/pandora/talk?botid=%@&skin=custom_input",self.botId];
-    NSLog(@"Getting url %@",url);
-    NSURLRequest *theRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+- (void)setupBot:(BOOL)botIdFetched {
+    NSURL *URL = [NSURL URLWithString: botIdFetched? [NSString stringWithFormat:@"https://sheepridge.pandorabots.com/pandora/talk?botid=%@&skin=custom_input",self.botId] : @"https://alice.pandorabots.com"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     
-    start2Connection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-    start2Data = [NSMutableData data];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                                if (!botIdFetched) {
+                                                    // fetch bot id first
+                                                    NSLog(@"Succeeded! Received %lu bytes of data",(unsigned long)[data length]);
+                                                    NSString *content = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+                                                    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"botid=(\\w+)" options:0 error:&error];
+                                                    NSAssert1(error == nil, @"Regexp error %@", error);
+                                                    NSArray *matches = [regex matchesInString:content options:0 range:NSMakeRange(0, [content length])];
+                                                    self.botId = [content substringWithRange:[[matches objectAtIndex:0] rangeAtIndex:1]];
+                                                    NSLog(@"Botid is now %@",self.botId);
+                                                    [self setupBot:YES];
+                                                } else {
+                                                    NSLog(@"Succeeded! Received %lu bytes of data",(unsigned long)[data length]);
+                                                    NSString *content = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding];
+                                                    NSError *error = nil;
+                                                    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"name=\"botcust2\" value=\"(\\w+)" options:0 error:&error];
+                                                    NSAssert1(error == nil, @"Regexp error %@", error);
+                                                    NSArray *matches = [regex matchesInString:content options:0 range:NSMakeRange(0, [content length])];
+                                                    self.botcust2 = [content substringWithRange:[[matches objectAtIndex:0] rangeAtIndex:1]];
+                                                    NSLog(@"botcust2 is now %@",self.botcust2);
+                                                }
+                                            }];
+    [task resume];
 }
 
 - (void)requestBotResponse {

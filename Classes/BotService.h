@@ -19,5 +19,6 @@
 - (void)initWithBuddy:(Buddy *) theBuddy;
 - (void)requestBotResponse;
 - (void)cancelBotResponseRequest;
+- (void)startTheBot;
 
 @end

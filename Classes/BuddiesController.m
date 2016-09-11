@@ -73,7 +73,6 @@
     chatController.botService = self.botService;
     
     [self.botService initWithBuddy:selectedbuddy];
-    [self.botService requestBotResponse];
 	[self.navigationController pushViewController:chatController animated:YES];
 }
 
