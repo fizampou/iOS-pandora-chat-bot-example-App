@@ -99,9 +99,13 @@
                               NSArray *matches = [regex matchesInString:content options:0 range:NSMakeRange(0, [content length])];
                               NSString *reply = [content substringWithRange:[[matches objectAtIndex:0] rangeAtIndex:1]];
                               NSLog(@"Reply: %@",reply);
-                              [NSThread sleepForTimeInterval:5]; // don't answer immediately
-                              [self responseReceived:reply];
-
+                              dispatch_async(
+                                             dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+                                             ^{
+                                                 sleep(5);
+                                                 [self responseReceived:reply];
+                                             }
+                                             );
                           }
                       } postData: postString];
     } else {
