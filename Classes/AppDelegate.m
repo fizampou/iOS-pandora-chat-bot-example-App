@@ -15,14 +15,13 @@
 	NSAssert1(!failed,@"Save failed %@",[error userInfo]);
 }
 
-
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { 
 
-	BuddiesController *buddies = [BuddiesController xnew];
-    Repository *repository = [Repository sharedRepository];
+	BuddiesController *buddies = [[BuddiesController alloc] init];
+    Repository *repository = [[Repository alloc] init];
 
     repository.delegate = self;
     buddies.repository = repository;
@@ -30,10 +29,12 @@
     [self addSortDescriptors];
 	[self addHardCodedBuddies];
 
-	self.navigationController = [UINavigationController xnew];
+	self.navigationController = [[UINavigationController alloc] init];
 	[self.navigationController pushViewController:buddies animated:NO];
-	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+	
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = self.navigationController;
+    
     [window makeKeyAndVisible];
 
 	return YES;
@@ -50,7 +51,6 @@
      */
 }
 
-
 - (void)applicationWillTerminate:(UIApplication *)application {
 	[self save];
 }
@@ -63,7 +63,7 @@
 }
 
 - (NSArray*)findAllOfEntity:(NSString*)entityName {
-	NSFetchRequest *request = [NSFetchRequest xnew];
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	id description = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.context];
 	[request setEntity:description];
 	NSError *error = nil;
@@ -117,7 +117,7 @@
     if (self->context != nil)
         return self->context;
     
-    self->context = [NSManagedObjectContext xnew];
+    self->context = [[NSManagedObjectContext alloc] init];
     [self->context setPersistentStoreCoordinator:self.coordinator];
     return self.context;
 }

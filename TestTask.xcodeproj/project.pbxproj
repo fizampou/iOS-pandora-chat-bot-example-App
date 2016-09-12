@@ -93,6 +93,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B759A2C81D8602EC003C5099 /* Repositories */,
 				B759A2C41D853B5C003C5099 /* Services */,
 				B759A2BF1D84B8D6003C5099 /* MockResponses */,
 				B759A2BE1D84B193003C5099 /* Models */,
@@ -100,8 +101,6 @@
 				28C286E00D94DF7D0034E888 /* BuddiesController.m */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
-				519ACD1B1242CD4A00768044 /* Repository.h */,
-				519ACD1C1242CD4A00768044 /* Repository.m */,
 				5192B2001244F13F009AA323 /* ChatController.h */,
 				5192B2011244F13F009AA323 /* ChatController.m */,
 				5192B4BE12455C96009AA323 /* TextViewCell.h */,
@@ -206,6 +205,15 @@
 				B759A2C61D853D13003C5099 /* BotService.m */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		B759A2C81D8602EC003C5099 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				519ACD1B1242CD4A00768044 /* Repository.h */,
+				519ACD1C1242CD4A00768044 /* Repository.m */,
+			);
+			name = Repositories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

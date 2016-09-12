@@ -14,8 +14,6 @@
 #define BOTCUST_REGEX @"name=\"botcust2\" value=\"(\\w+)"
 #define ALICE_REGEX @"<b>A.L.I.C.E.:<\\/b> *(.*?)<br\\/>"
 
-
-
 @interface BotService ()
 @property(nonatomic,strong) NSString *botId;
 @property(nonatomic,strong) NSString *botcust2;
@@ -106,7 +104,8 @@
 
                           }
                       } postData: postString];
-            } else {
+    } else {
+        // bot connection is not ready / available use the mocks
         [self performSelector:@selector(responseReceived:) withObject:MockResponses.RandomPhrase afterDelay:rand() % 15 + 2];
     }
 }

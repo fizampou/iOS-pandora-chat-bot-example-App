@@ -4,11 +4,6 @@
 
 @implementation NSObject (NSObjectAdditions)
 
-// just a shorthand
-+(id)xnew {
-	return [[self alloc] init];
-}
-
 +(NSArray*)declaredProperties {
 	NSMutableArray *result = [NSMutableArray array];
 	unsigned int count = 0;

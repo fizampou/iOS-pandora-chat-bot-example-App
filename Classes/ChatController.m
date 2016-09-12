@@ -84,7 +84,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	UILabel *label = [UILabel xnew];
+	UILabel *label = [[UILabel alloc] init];
 	label.frame = CGRectMake(18, 0, 290, 20);
 	label.font = [UIFont boldSystemFontOfSize:[UIFont smallSystemFontSize]];
 	label.backgroundColor = [UIColor clearColor];
@@ -96,7 +96,7 @@
 
 	label.text = [[self.buddy.messages objectAtIndex:section] header];
 
-	UIView *view = [UIView xnew];
+	UIView *view = [[UIView alloc] init];
 	[view addSubview:label];
 	
 	return view;
@@ -131,7 +131,6 @@
 #pragma mark -
 #pragma mark Private methods
 
-
 - (void)addMessage:(NSString*)text fromMe:(BOOL)fromMe {
 	NSAssert(self.repository != nil, @"Not initialized");
 	Message *msg = [self.repository messageForBuddy:self.buddy];
@@ -146,7 +145,7 @@
 }
 
 - (void)add:(id)sender {
-	SendController *ctrl = [SendController xnew];
+	SendController *ctrl = [[SendController alloc] init];
 	ctrl.delegate = self;
 	[self presentModalViewController:[[UINavigationController alloc] initWithRootViewController:ctrl] animated:YES];
 }

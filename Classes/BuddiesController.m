@@ -12,7 +12,7 @@
 @synthesize buddies, repository, botService;
 
 
-#pragma mark -
+#pragma mark
 #pragma mark View lifecycle
 
 - (void)loadView {

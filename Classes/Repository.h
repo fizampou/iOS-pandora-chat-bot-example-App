@@ -14,5 +14,4 @@
 - (Buddy*)buddyWithName:(NSString*)name;
 - (void)asyncSave;
 - (Message*)messageForBuddy:(Buddy*)buddy;
-+ (id)sharedRepository;
 @end

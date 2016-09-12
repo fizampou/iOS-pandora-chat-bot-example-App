@@ -6,15 +6,6 @@
 @implementation Repository
 @synthesize delegate;
 
-+ (id)sharedRepository {
-    static Repository *sharedRepository = nil;
-    @synchronized(self) {
-        if (sharedRepository == nil)
-            sharedRepository = [[self alloc] init];
-    }
-    return sharedRepository;
-}
-
 - (NSArray*)findBuddies {
 	return [self.delegate findAllOfEntity:@"Buddy"];
 }

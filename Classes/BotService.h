@@ -11,6 +11,8 @@
 
 
 @interface BotService : NSObject {
+    Buddy *buddy;
+    NSString *messageReceived;
 }
 
 @property(nonatomic,strong) Buddy *buddy;
