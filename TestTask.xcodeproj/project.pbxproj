@@ -26,11 +26,12 @@
 		51AA41071247985400EB966D /* Kelly.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 51AA41031247985400EB966D /* Kelly.jpg */; };
 		51AA41081247985400EB966D /* Matt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 51AA41041247985400EB966D /* Matt.jpg */; };
 		51AA41111247987E00EB966D /* GPNSObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 51AA41101247987E00EB966D /* GPNSObjectAdditions.m */; };
-		51D39A841246F92A007B7D88 /* SendController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D39A831246F92A007B7D88 /* SendController.m */; };
 		77666E47199259D100FF7950 /* Default-h568.png in Resources */ = {isa = PBXBuildFile; fileRef = 77666E46199259D100FF7950 /* Default-h568.png */; };
 		B759A2BB1D8469AC003C5099 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B759A2BA1D8469AC003C5099 /* Default-568h@2x.png */; };
 		B759A2C21D84B903003C5099 /* MockResponses.m in Sources */ = {isa = PBXBuildFile; fileRef = B759A2C11D84B903003C5099 /* MockResponses.m */; };
 		B759A2C71D853D13003C5099 /* BotService.m in Sources */ = {isa = PBXBuildFile; fileRef = B759A2C61D853D13003C5099 /* BotService.m */; };
+		B759A2CB1D888C31003C5099 /* Keyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = B759A2CA1D888C31003C5099 /* Keyboard.m */; };
+		B759A2CE1D888C43003C5099 /* CustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B759A2CD1D888C43003C5099 /* CustomTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,8 +65,6 @@
 		51AA41041247985400EB966D /* Matt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Matt.jpg; path = Resources/Matt.jpg; sourceTree = "<group>"; };
 		51AA410F1247987E00EB966D /* GPNSObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPNSObjectAdditions.h; path = Classes/GPNSObjectAdditions.h; sourceTree = "<group>"; };
 		51AA41101247987E00EB966D /* GPNSObjectAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPNSObjectAdditions.m; path = Classes/GPNSObjectAdditions.m; sourceTree = "<group>"; };
-		51D39A821246F92A007B7D88 /* SendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendController.h; sourceTree = "<group>"; };
-		51D39A831246F92A007B7D88 /* SendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendController.m; sourceTree = "<group>"; };
 		77666E46199259D100FF7950 /* Default-h568.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-h568.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Chat-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Chat-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		B759A2BA1D8469AC003C5099 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -73,6 +72,10 @@
 		B759A2C11D84B903003C5099 /* MockResponses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockResponses.m; sourceTree = "<group>"; };
 		B759A2C51D853D13003C5099 /* BotService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BotService.h; sourceTree = "<group>"; };
 		B759A2C61D853D13003C5099 /* BotService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BotService.m; sourceTree = "<group>"; };
+		B759A2C91D888C31003C5099 /* Keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keyboard.h; sourceTree = "<group>"; };
+		B759A2CA1D888C31003C5099 /* Keyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keyboard.m; sourceTree = "<group>"; };
+		B759A2CC1D888C43003C5099 /* CustomTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableView.h; sourceTree = "<group>"; };
+		B759A2CD1D888C43003C5099 /* CustomTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +96,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B759A2CC1D888C43003C5099 /* CustomTableView.h */,
+				B759A2CD1D888C43003C5099 /* CustomTableView.m */,
+				B759A2C91D888C31003C5099 /* Keyboard.h */,
+				B759A2CA1D888C31003C5099 /* Keyboard.m */,
 				B759A2C81D8602EC003C5099 /* Repositories */,
 				B759A2C41D853B5C003C5099 /* Services */,
 				B759A2BF1D84B8D6003C5099 /* MockResponses */,
@@ -105,8 +112,6 @@
 				5192B2011244F13F009AA323 /* ChatController.m */,
 				5192B4BE12455C96009AA323 /* TextViewCell.h */,
 				5192B4BF12455C96009AA323 /* TextViewCell.m */,
-				51D39A821246F92A007B7D88 /* SendController.h */,
-				51D39A831246F92A007B7D88 /* SendController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -289,13 +294,14 @@
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* BuddiesController.m in Sources */,
 				519ACD161242CA6800768044 /* Model.xcdatamodel in Sources */,
+				B759A2CB1D888C31003C5099 /* Keyboard.m in Sources */,
 				519ACD1D1242CD4A00768044 /* Repository.m in Sources */,
 				5192B16E1244EB9D009AA323 /* Buddy.m in Sources */,
 				5192B2021244F13F009AA323 /* ChatController.m in Sources */,
 				5192B2A51244F8FF009AA323 /* Message.m in Sources */,
 				5192B4C012455C96009AA323 /* TextViewCell.m in Sources */,
+				B759A2CE1D888C43003C5099 /* CustomTableView.m in Sources */,
 				B759A2C21D84B903003C5099 /* MockResponses.m in Sources */,
-				51D39A841246F92A007B7D88 /* SendController.m in Sources */,
 				B759A2C71D853D13003C5099 /* BotService.m in Sources */,
 				51AA41111247987E00EB966D /* GPNSObjectAdditions.m in Sources */,
 				516BB16D14ED259700C042DA /* NSString+SKAdditions.m in Sources */,

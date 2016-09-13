@@ -1,9 +1,9 @@
 #import <UIKit/UIKit.h>
 #import "Repository.h"
-#import "SendController.h"
 #import "BotService.h"
+#import "Keyboard.h"
 
-@interface ChatController : UITableViewController <UITextViewDelegate,SendControllerDelegate> {
+@interface ChatController : UITableViewController <KeyboardDelegate> {
 	Buddy *buddy;
 	Repository *repository;
     BotService *botService;

@@ -3,10 +3,11 @@
 #import "Message.h"
 #import "TextViewCell.h"
 #import "NSString+SKAdditions.h"
-
+#import "CustomTableView.h"
 
 @interface ChatController ()
 - (void)addMessage:(NSString*)text fromMe:(BOOL)fromMe;
+@property (strong, nonatomic) CustomTableView *tableView;
 @end
 
 @implementation ChatController
@@ -22,10 +23,24 @@
 
 - (void)loadView {
     [super loadView];
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add:)];
 	self.title = self.buddy.name;
     
+    self.tableView = [[CustomTableView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    [self.tableView becomeFirstResponder];
+    
+    // Pass the current controller as the keyboardDelegate
+    ((CustomTableView *)self.tableView).keyboardDelegate = self;
+    
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTouchView)];
+    [self.view addGestureRecognizer:recognizer];
+    
     [self.botService startTheBot];
+}
+
+// Dissmiss the keyboard on tableView touches by making the view first responder
+- (void)didTouchView {
+    [self.tableView becomeFirstResponder];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -59,6 +74,13 @@
 }
 
 #pragma mark -
+#pragma mark KeyboardDelegate
+
+- (void)keyboard:(Keyboard *)keyboard sendText:(NSString *)text {
+    [self addMessage:text fromMe:YES];
+}
+
+#pragma mark -
 #pragma mark UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -70,9 +92,9 @@
 	return 1;
 }
 
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell*)tableView:(UITableView *)tableVi cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	Message *message = [self.buddy.messages objectAtIndex:indexPath.section];
-	TextViewCell *cell = [TextViewCell cellForTableView:tableView];
+	TextViewCell *cell = [TextViewCell cellForTableView:tableVi];
 	cell.textView.text = [message text];
 	cell.backgroundColor = message.fromMe ? [UIColor whiteColor] : [UIColor colorWithRed:.95 green:.95 blue:1 alpha:1];
 										
@@ -120,14 +142,6 @@
 	return size.height > minSize ? size.height : minSize;
 }
 
-
-#pragma mark -
-#pragma mark SendControllerDelegate
-
-- (void)didSendMessage:(NSString*)text {
-	[self addMessage:text fromMe:YES];
-}
-
 #pragma mark -
 #pragma mark Private methods
 
@@ -142,12 +156,6 @@
 	[self.repository asyncSave];
 	[self.tableView reloadData];
 	[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:[self.buddy.messages count] - 1] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-}
-
-- (void)add:(id)sender {
-	SendController *ctrl = [[SendController alloc] init];
-	ctrl.delegate = self;
-	[self presentModalViewController:[[UINavigationController alloc] initWithRootViewController:ctrl] animated:YES];
 }
 
 @end
