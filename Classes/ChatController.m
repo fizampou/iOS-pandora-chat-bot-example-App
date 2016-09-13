@@ -77,7 +77,10 @@
 #pragma mark KeyboardDelegate
 
 - (void)keyboard:(Keyboard *)keyboard sendText:(NSString *)text {
-    [self addMessage:text fromMe:YES];
+    // send only if not empty
+    if( [text length] != 0) {
+        [self addMessage:text fromMe:YES];
+    }
 }
 
 #pragma mark -

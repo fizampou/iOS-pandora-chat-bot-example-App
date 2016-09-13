@@ -96,10 +96,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B759A2CC1D888C43003C5099 /* CustomTableView.h */,
-				B759A2CD1D888C43003C5099 /* CustomTableView.m */,
-				B759A2C91D888C31003C5099 /* Keyboard.h */,
-				B759A2CA1D888C31003C5099 /* Keyboard.m */,
+				B759A2CF1D889624003C5099 /* Custom Views and Handlers */,
 				B759A2C81D8602EC003C5099 /* Repositories */,
 				B759A2C41D853B5C003C5099 /* Services */,
 				B759A2BF1D84B8D6003C5099 /* MockResponses */,
@@ -219,6 +216,17 @@
 				519ACD1C1242CD4A00768044 /* Repository.m */,
 			);
 			name = Repositories;
+			sourceTree = "<group>";
+		};
+		B759A2CF1D889624003C5099 /* Custom Views and Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				B759A2CC1D888C43003C5099 /* CustomTableView.h */,
+				B759A2CD1D888C43003C5099 /* CustomTableView.m */,
+				B759A2C91D888C31003C5099 /* Keyboard.h */,
+				B759A2CA1D888C31003C5099 /* Keyboard.m */,
+			);
+			name = "Custom Views and Handlers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
