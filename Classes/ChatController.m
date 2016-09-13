@@ -12,6 +12,7 @@
 
 @implementation ChatController
 @synthesize buddy, repository, botService;
+@dynamic tableView;
 
 - (id)init {
 	self = [super initWithStyle:UITableViewStyleGrouped];
@@ -43,16 +44,6 @@
     [self.tableView becomeFirstResponder];
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if([keyPath isEqualToString:@"messageReceived"])
-    {
-        NSString* message = [change objectForKey:NSKeyValueChangeNewKey];
-        [self addMessage:message fromMe:NO];
-    }
-}
-
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	NSInteger section = [self.buddy.messages count];
@@ -83,6 +74,15 @@
     }
 }
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqualToString:@"messageReceived"])
+    {
+        NSString* message = [change objectForKey:NSKeyValueChangeNewKey];
+        [self addMessage:message fromMe:NO];
+    }
+}
+
 #pragma mark -
 #pragma mark UITableViewDataSource
 
@@ -104,19 +104,13 @@
 	return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	UILabel *label = [[UILabel alloc] init];
 	label.frame = CGRectMake(18, 0, 290, 20);
 	label.font = [UIFont boldSystemFontOfSize:[UIFont smallSystemFontSize]];
 	label.backgroundColor = [UIColor clearColor];
 	label.textColor = [UIColor darkGrayColor];
-	
-	// inset effect
-	label.shadowColor  = [UIColor colorWithRed:1 green:1 blue:1 alpha:.55];
+    label.shadowColor  = [UIColor colorWithRed:1 green:1 blue:1 alpha:.55];
 	label.shadowOffset = CGSizeMake(0.0, 1.0);
 
 	label.text = [[self.buddy.messages objectAtIndex:section] header];
@@ -145,11 +139,11 @@
 	return size.height > minSize ? size.height : minSize;
 }
 
+
 #pragma mark -
 #pragma mark Private methods
 
 - (void)addMessage:(NSString*)text fromMe:(BOOL)fromMe {
-	NSAssert(self.repository != nil, @"Not initialized");
 	Message *msg = [self.repository messageForBuddy:self.buddy];
 	msg.text = text;
 	msg.fromMe = fromMe;

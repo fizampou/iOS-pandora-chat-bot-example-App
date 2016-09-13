@@ -39,7 +39,7 @@
     return self;
 }
 
-- (void) didTouchAction {
+- (void)didTouchAction {
     [self.delegate keyboard:self sendText:self.textView.text];
 }
 
