@@ -7,8 +7,6 @@
 
 @interface Repository : NSObject {
 }
-@property (nonatomic, weak) AppDelegate *delegate;
-
 - (NSArray*)findBuddies;
 - (NSArray*)findMessages;
 - (Buddy*)buddyWithName:(NSString*)name;

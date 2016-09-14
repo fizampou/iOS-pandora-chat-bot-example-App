@@ -6,8 +6,6 @@
 @implementation AppDelegate
 @synthesize window, navigationController;
 
-
-
 - (void)save {
 	NSAssert(self.context != nil, @"Not initialized");
 	NSError *error = nil;
@@ -23,7 +21,6 @@
 	BuddiesController *buddies = [[BuddiesController alloc] init];
     Repository *repository = [[Repository alloc] init];
 
-    repository.delegate = self;
     buddies.repository = repository;
     
     [self addSortDescriptors];
