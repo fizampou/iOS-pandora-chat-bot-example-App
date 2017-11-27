@@ -1,6 +1,5 @@
 //
 //  BotService.h
-//  TestTask
 //
 //  Created by Filippos Zampounis on 11/09/16.
 //

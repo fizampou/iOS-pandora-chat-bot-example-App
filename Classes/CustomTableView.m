@@ -1,6 +1,5 @@
 //
 //  CustomTableView.m
-//  TestTask
 //
 //  Created by Filippos Zampounis on 13/09/16.
 //

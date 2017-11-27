@@ -1,6 +1,5 @@
 //
 //  MockResponses.h
-//  TestTask
 //
 //  Created by Filippos Zampounis on 10/09/16.
 //
